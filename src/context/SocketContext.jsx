@@ -82,23 +82,24 @@ const SocketProvider = ({ children }) => {
 
     socket.onclose = (e) => {
       const { reason } = e;
+      console.log(e);
       console.log(
         `Socket is closed. Reconnect will be attempted in ${Math.min(
           wsTimeoutDuration / 1000
         )} second. ${reason}`
       );
 
-      const timeout = setTimeout(() => {
+      /*const timeout = setTimeout(() => {
         //check if websocket instance is closed, if so renew connection
         if (!socket || socket.readyState === WebSocket.CLOSED) {
           dispatch({ type: "renewSocket" });
         }
-      }, wsTimeoutDuration);
+      }, wsTimeoutDuration);*/
 
-      dispatch({
+      /*dispatch({
         type: "updateTimeout",
         timeout,
-      });
+      });*/
     };
 
     // err argument does not have any useful information about the error
