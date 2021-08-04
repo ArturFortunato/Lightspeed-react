@@ -4,7 +4,19 @@ import PropTypes from "prop-types";
 export const RTCContext = createContext();
 
 const RTCProvider = ({ children }) => {
-  const [pc] = useState(new RTCPeerConnection());
+  const configuration = {
+    iceServers: [
+      { urls: "stun:stun.l.google.com:19302" },
+      // Prod
+      {
+        urls: "turn:34.243.91.76:3478?transport=tcp",
+        username: "eaglestream",
+        credential: "root",
+      },
+    ],
+  };
+
+  const [pc] = useState(new RTCPeerConnection(configuration));
 
   const value = {
     pc,
